@@ -3,7 +3,7 @@
 
 Following diagram shows actual kubernetes cluster with all components
 
-![Alt text](https://i.postimg.cc/RhFV9P5Z/kubernetes-architecture.png)
+![Alt text](https://miro.medium.com/v2/resize:fit:1400/1*0Sudxeu5mQyN3ahi1FV49A.png)
 
 Master Node:
 
