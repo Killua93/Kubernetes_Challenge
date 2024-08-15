@@ -17,31 +17,45 @@ wait for both instance to get ready then connect
 
 3. kubeadm installation
 login to master node and create a script called k8sinstall.sh
+
 ##########
+
 sudo apt update
+
 -#install docker
 sudo apt install docker.io -y
+
 sudo apt-get update
+
 -# apt-transport-https may be a dummy package; if so, you can skip that package
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+
 -# creating directory
 sudo mkdir -p -m 755 /etc/apt/keyrings
+
 -# downloading pacakges and copying it to above created directory
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
 -# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
 -# installing components of k8s
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
+
 ###########
+
 Run script 
+
 sudo bash k8sinstall.sh
 
 Then login to slave instance and install the same script
 ![image6](https://github.com/user-attachments/assets/f60adb5d-073d-432a-9491-4a1a60bd41fc)
 
 4. kubeadm join 
+
 Then go to master instance and run below commands
+
 sudo kubeadm init --ingore-preflight-errors
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -59,6 +73,7 @@ sudo kubeadm join 172.31.18.202:6443 --token bc695q.z5lxs773skehzjjm --discovery
 ![image7](https://github.com/user-attachments/assets/dacee16c-ee78-4f8d-805a-84442a8de23b)
 
 5. now test setup by running kubectl get nodes all nodes should be running
+
 (note: if nodes are not running run below commands)
 # Network Plugin = calico
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
